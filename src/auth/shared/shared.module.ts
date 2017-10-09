@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 // Services
 import { AuthService } from './services/auth/auth.service';
+// Guards
+import { AuthGaurd } from './guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { AuthService } from './services/auth/auth.service';
   ],
   exports: [
     AuthFormComponent
-  ]
+  ],
+
 })
 
 export class SharedModule {
@@ -24,7 +27,8 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        AuthService
+        AuthService,
+        AuthGaurd
       ]
     }
   }

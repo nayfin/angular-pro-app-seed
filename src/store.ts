@@ -1,17 +1,24 @@
-import { User } from './auth/shared/services/auth/auth.service';
-import { Observable } from 'rxjs/Observable';
+import { Workout } from './health/shared/services/workouts/workouts.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
+import { Meal } from './health/shared/services/meals/meals.service';
+import { User } from './auth/shared/services/auth/auth.service';
+
+
 export interface State {
   user: User,
+  meals: Meal[],
+  workouts: Workout[],
   [key: string]: any
 }
 
 const state: State = {
-  user: undefined
+  user: undefined,
+  meals: undefined,
+  workouts: undefined
 };
 
 export class Store {

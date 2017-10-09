@@ -16,7 +16,6 @@ export class AuthService {
   
   auth$ = this.af.authState
     .do( authState => {
-      console.log("authState")
       if( !authState ) {
         this.store.set('user', null);
         return;
@@ -25,7 +24,7 @@ export class AuthService {
         email: authState.email,
         uid: authState.uid,
         authenticated: true
-      }
+      }      
       this.store.set('user', user);
     });
 
@@ -34,17 +33,26 @@ export class AuthService {
     private af: AngularFireAuth
   ) {}
 
+  get authState() {
+    return this.af.authState;
+  }
+
+  get user() {
+    return this.af.auth.currentUser;
+  }
   createUser(email: string, password:string) {
     return this.af.auth
       .createUserWithEmailAndPassword(email, password);
   }
 
   loginUser(email: string, password: string) {
+    
     return this.af.auth
       .signInWithEmailAndPassword(email, password);
   }
 
   logoutUser() {
+    this.store.set('user', null);
     return this.af.auth.signOut();
   }
 }
