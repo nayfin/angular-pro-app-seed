@@ -187,12 +187,9 @@ export class WorkoutFormComponent implements OnChanges {
   }
   ngOnChanges( changes: SimpleChanges ) {
     if( this.workout && this.workout.name) {
-
+      
       this.exists = true;
-
-      const value = this.workout;
-      this.form.patchValue({name: value.name});
-
+      this.form.patchValue(this.workout);
     }
   }
 

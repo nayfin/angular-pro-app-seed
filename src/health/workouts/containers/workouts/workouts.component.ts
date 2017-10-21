@@ -17,9 +17,9 @@ import { Store } from 'store';
         </h1>
         <a
           class="btn__add"
-          [routerLink]="['../workouts/new']">
+          [routerLink]="['new']">
           <img src="/img/add-white.svg" alt="">
-          New Workouts
+          New Workout
         </a>
       </div>
       <div
@@ -34,6 +34,8 @@ import { Store } from 'store';
         <list-item 
           *ngFor="let workout of workouts"
           [item]="workout"
+          [subtitle]="workout | workout"
+          [linkRootPath]="'../workouts'"
           (remove)="removeWorkout($event)">
         </list-item>
 

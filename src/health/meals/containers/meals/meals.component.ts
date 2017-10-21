@@ -34,6 +34,8 @@ import { Store } from 'store';
         <list-item 
           *ngFor="let meal of meals"
           [item]="meal"
+          [linkRootPath]="'../meals'"
+          [subtitle]="meal.ingredients | join"
           (remove)="removeMeal($event)">
         </list-item>
 

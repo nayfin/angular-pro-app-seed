@@ -1,3 +1,4 @@
+import { User } from 'src/auth/shared/services/auth/auth.service';
 import { Store } from 'store';
 import { Injectable } from '@angular/core';
 
@@ -13,6 +14,7 @@ export interface User {
 }
 @Injectable()
 export class AuthService {
+  
   
   auth$ = this.af.authState
     .do( authState => {
@@ -46,7 +48,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string) {
-    
+    this.auth$.subscribe();
     return this.af.auth
       .signInWithEmailAndPassword(email, password);
   }

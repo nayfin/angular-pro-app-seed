@@ -13,7 +13,7 @@ import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from 
         </p>
 
         <p class="list-item__ingredients">
-          <span> {{item.ingredients}} </span>
+          <span> {{subtitle}} </span>
         </p>
         
       </a>
@@ -53,18 +53,18 @@ import { Component, Input, ChangeDetectionStrategy, Output, EventEmitter } from 
 export class ListItemComponent {
   
   toggled = false;
-
+  
+  @Input() subtitle: string;
   @Input() item: any;
+  @Input() linkRootPath: string;
 
   @Output() remove = new EventEmitter<any>();
   constructor(
     
   ) {}
 
-  getRoute(item: any) {
-    return [`../meals`,
-      item.$key,
-    ];
+  getRoute( item: any) {
+    return [ this.linkRootPath, item.$key ];
   }
 
   removeItem(){
